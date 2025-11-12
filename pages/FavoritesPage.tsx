@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import { ProductCard } from '../components/ProductCard';
 import { Product } from '../types';
@@ -21,8 +22,8 @@ const FavoritesPage: React.FC<FavoritesPageProps> = ({
 }) => {
   return (
     <>
-      <header className="sticky top-0 z-10 bg-slate-50/80 dark:bg-slate-900/80 backdrop-blur-md px-4 py-4 md:px-6 border-b border-slate-200 dark:border-slate-700">
-        <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100 text-center">My Favorites</h1>
+      <header className="sticky top-0 z-10 bg-slate-50/80 backdrop-blur-md px-4 py-4 md:px-6 border-b border-slate-200">
+        <h1 className="text-2xl font-bold text-slate-900 text-center">My Favorites</h1>
       </header>
       <main className="px-4 py-6 md:px-6">
         {favoritedProducts.length > 0 ? (
@@ -41,9 +42,9 @@ const FavoritesPage: React.FC<FavoritesPageProps> = ({
           </div>
         ) : (
           <div className="text-center py-20">
-            <Heart className="w-16 h-16 mx-auto text-slate-300 dark:text-slate-600" />
-            <h2 className="mt-4 text-xl font-semibold text-slate-700 dark:text-slate-200">No Favorites Yet</h2>
-            <p className="text-slate-500 dark:text-slate-400 mt-2">Tap the heart on any product to save it here.</p>
+            <Heart className="w-16 h-16 mx-auto text-slate-300" />
+            <h2 className="mt-4 text-xl font-semibold text-slate-700">No Favorites Yet</h2>
+            <p className="text-slate-500 mt-2">Tap the heart on any product to save it here.</p>
           </div>
         )}
       </main>

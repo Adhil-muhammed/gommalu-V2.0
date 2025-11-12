@@ -1,5 +1,6 @@
 
 
+
 import React from 'react';
 import { X, Trash2, ShoppingCart } from 'lucide-react';
 import { CartDetailItem } from '../types';
@@ -27,12 +28,12 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose, cartDetails, tot
       role="dialog"
     >
       <div 
-        className="bg-slate-50 dark:bg-slate-900 w-full max-w-lg max-h-[80vh] rounded-t-2xl md:rounded-2xl shadow-xl flex flex-col transition-transform transform duration-300 ease-out"
+        className="bg-card w-full max-w-lg max-h-[80vh] rounded-t-2xl md:rounded-2xl shadow-xl flex flex-col transition-transform transform duration-300 ease-out"
         style={{ transform: isOpen ? 'translateY(0)' : 'translateY(100%)' }}
       >
-        <header className="flex items-center justify-between p-4 border-b border-slate-200 dark:border-slate-700">
-          <h2 className="text-xl font-bold text-slate-800 dark:text-slate-100">My Cart</h2>
-          <button onClick={onClose} className="p-1 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-100 rounded-full hover:bg-slate-200 dark:hover:bg-slate-700">
+        <header className="flex items-center justify-between p-4 border-b border-slate-200">
+          <h2 className="text-xl font-bold text-slate-800">My Cart</h2>
+          <button onClick={onClose} className="p-1 text-slate-500 hover:text-slate-800 rounded-full hover:bg-slate-200">
             <X className="w-6 h-6" />
             <span className="sr-only">Close cart</span>
           </button>
@@ -41,9 +42,9 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose, cartDetails, tot
         <div className="flex-grow overflow-y-auto p-4">
           {cartDetails.length === 0 ? (
             <div className="text-center py-12 flex flex-col items-center">
-              <ShoppingCart className="w-16 h-16 text-slate-300 dark:text-slate-600 mb-4" />
-              <p className="text-slate-600 dark:text-slate-300 font-semibold text-lg">Your cart is empty.</p>
-              <p className="text-sm text-slate-400 dark:text-slate-500 mt-2">Looks like you haven't added anything yet.</p>
+              <ShoppingCart className="w-16 h-16 text-slate-300 mb-4" />
+              <p className="text-slate-600 font-semibold text-lg">Your cart is empty.</p>
+              <p className="text-sm text-slate-400 mt-2">Looks like you haven't added anything yet.</p>
               <button 
                 onClick={onStartShopping}
                 className="mt-8 bg-green-500 text-white font-bold py-3 px-8 rounded-xl hover:bg-green-600 transition-colors shadow-lg shadow-green-500/30"
@@ -57,15 +58,15 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose, cartDetails, tot
                 <li key={item.id} className="flex items-center space-x-4">
                   <ImageWithFallback src={item.imageUrl} alt={item.name} className="w-20 h-20 rounded-lg object-cover" />
                   <div className="flex-grow">
-                    <p className="font-bold text-slate-800 dark:text-slate-100">{item.name}</p>
-                    <p className="text-sm text-slate-500 dark:text-slate-400">{formatPrice(item.price)}</p>
+                    <p className="font-bold text-slate-800">{item.name}</p>
+                    <p className="text-sm text-slate-500">{formatPrice(item.price)}</p>
                     <div className="flex items-center justify-between mt-2">
-                        <div className="flex items-center justify-between bg-white dark:bg-slate-800 text-green-700 dark:text-green-400 rounded-lg border border-slate-200 dark:border-slate-700">
-                          <button onClick={() => onUpdateQuantity(item.id, item.quantity - 1)} className="px-3 py-1 font-bold text-lg rounded-l-lg hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">-</button>
-                          <span className="font-bold text-sm px-2 text-slate-800 dark:text-slate-100">{item.quantity}</span>
-                          <button onClick={() => onUpdateQuantity(item.id, item.quantity + 1)} className="px-3 py-1 font-bold text-lg rounded-r-lg hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">+</button>
+                        <div className="flex items-center justify-between bg-background text-green-700 rounded-lg border border-border">
+                          <button onClick={() => onUpdateQuantity(item.id, item.quantity - 1)} className="px-3 py-1 font-bold text-lg rounded-l-lg hover:bg-accent transition-colors">-</button>
+                          <span className="font-bold text-sm px-2 text-slate-800">{item.quantity}</span>
+                          <button onClick={() => onUpdateQuantity(item.id, item.quantity + 1)} className="px-3 py-1 font-bold text-lg rounded-r-lg hover:bg-accent transition-colors">+</button>
                         </div>
-                        <p className="font-bold text-slate-800 dark:text-slate-100">{formatPrice(item.price * item.quantity)}</p>
+                        <p className="font-bold text-slate-800">{formatPrice(item.price * item.quantity)}</p>
                     </div>
                   </div>
                   <button onClick={() => onUpdateQuantity(item.id, 0)} className="p-2 text-slate-400 hover:text-red-500">
@@ -79,10 +80,10 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose, cartDetails, tot
         </div>
         
         {cartDetails.length > 0 && (
-          <footer className="p-4 border-t border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 md:rounded-b-2xl">
+          <footer className="p-4 border-t border-slate-200 bg-card md:rounded-b-2xl">
             <div className="flex justify-between items-center mb-4">
-              <span className="text-slate-600 dark:text-slate-300 font-semibold">Total</span>
-              <span className="text-2xl font-bold text-slate-900 dark:text-slate-50">{formatPrice(totalPrice)}</span>
+              <span className="text-slate-600 font-semibold">Total</span>
+              <span className="text-2xl font-bold text-slate-900">{formatPrice(totalPrice)}</span>
             </div>
             <button className="w-full bg-green-500 text-white font-bold py-3 rounded-xl hover:bg-green-600 transition-colors shadow-lg shadow-green-500/30">
               Proceed to Checkout

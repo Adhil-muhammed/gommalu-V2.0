@@ -1,4 +1,5 @@
 
+
 import React, { useState, useMemo, useEffect } from 'react';
 import { BottomNav } from './components/BottomNav';
 import CartModal from './components/CartModal';
@@ -12,7 +13,6 @@ import OrdersPage from './pages/OrdersPage';
 import ProfilePage from './pages/ProfilePage';
 
 export type View = 'home' | 'favorites' | 'orders' | 'profile';
-type ModalView = 'list' | 'detail';
 
 function App() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -24,7 +24,6 @@ function App() {
   const [favorites, setFavorites] = useState<Set<number>>(new Set());
 
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [modalView, setModalView] = useState<ModalView>('list');
   const [selectedProductId, setSelectedProductId] = useState<number | null>(null);
   const [currentView, setCurrentView] = useState<View>('home');
   
@@ -66,12 +65,10 @@ function App() {
 
   const handleSelectProduct = (productId: number) => {
     setSelectedProductId(productId);
-    setModalView('detail');
   };
 
   const handleCloseDetail = () => {
-    setModalView('list');
-    setTimeout(() => setSelectedProductId(null), 300);
+    setSelectedProductId(null);
   };
 
   const toggleFavorite = (productId: number) => {
@@ -155,16 +152,16 @@ function App() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-900">
+      <div className="min-h-screen flex items-center justify-center bg-background">
         <div className="text-center">
-          <p className="text-3xl font-bold text-green-600" style={{fontFamily: 'Manjari, sans-serif'}}>Loading...</p>
+          <p className="text-3xl font-bold text-primary" style={{fontFamily: 'Manjari, sans-serif'}}>Loading...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 pb-28">
+    <div className="min-h-screen bg-background pb-28">
       <div className="transition-opacity duration-300 ease-in-out">
         {renderContent()}
       </div>
@@ -185,7 +182,7 @@ function App() {
       />
       {selectedProduct && (
         <ProductDetail
-            isOpen={modalView === 'detail'}
+            isOpen={!!selectedProduct}
             product={selectedProduct}
             quantity={getProductQuantity(selectedProduct.id)}
             onClose={handleCloseDetail}

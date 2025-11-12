@@ -1,5 +1,6 @@
 
 
+
 import React, { useRef, useState, useEffect } from 'react';
 import type { Category } from '../types';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
@@ -65,7 +66,7 @@ export const CategoryNav: React.FC<CategoryNavProps> = ({ categories, selectedCa
             className={`flex-shrink-0 flex flex-col items-center justify-center space-y-2 w-24 h-24 p-2 rounded-2xl transition-all duration-300 transform ${
               selectedCategory === category.id
                 ? 'bg-green-500 text-white shadow-lg scale-105'
-                : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-green-100 dark:hover:bg-green-900/50 hover:scale-105'
+                : 'bg-white text-slate-600 hover:bg-green-100 hover:scale-105'
             }`}
           >
             <category.icon className="h-8 w-8" strokeWidth={1.5} />
@@ -78,19 +79,19 @@ export const CategoryNav: React.FC<CategoryNavProps> = ({ categories, selectedCa
       <button 
         onClick={() => scroll('left')}
         aria-label="Scroll left"
-        className={`absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white/90 dark:bg-slate-800/80 backdrop-blur-sm rounded-full p-2 shadow-lg hover:bg-white dark:hover:bg-slate-700 transition-opacity duration-300
+        className={`absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white/90 backdrop-blur-sm rounded-full p-2 shadow-lg hover:bg-white transition-opacity duration-300
           ${showLeftArrow ? 'opacity-100' : 'opacity-0 pointer-events-none'}`
       }>
-        <ChevronLeft className="w-5 h-5 text-slate-700 dark:text-slate-200" />
+        <ChevronLeft className="w-5 h-5 text-slate-700" />
       </button>
 
       <button 
         onClick={() => scroll('right')}
         aria-label="Scroll right"
-        className={`absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white/90 dark:bg-slate-800/80 backdrop-blur-sm rounded-full p-2 shadow-lg hover:bg-white dark:hover:bg-slate-700 transition-opacity duration-300
+        className={`absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white/90 backdrop-blur-sm rounded-full p-2 shadow-lg hover:bg-white transition-opacity duration-300
           ${showRightArrow ? 'opacity-100' : 'opacity-0 pointer-events-none'}`
       }>
-        <ChevronRight className="w-5 h-5 text-slate-700 dark:text-slate-200" />
+        <ChevronRight className="w-5 h-5 text-slate-700" />
       </button>
     </nav>
   );

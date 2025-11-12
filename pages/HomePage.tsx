@@ -1,4 +1,5 @@
 
+
 import React, { useState, useMemo } from 'react';
 import { Header } from '../components/Header';
 import { CategoryNav } from '../components/CategoryNav';
@@ -57,7 +58,7 @@ const HomePage: React.FC<HomePageProps> = ({
         />
 
         <section className="mt-8">
-          <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-4 capitalize">
+          <h2 className="text-2xl font-bold text-slate-900 mb-4 capitalize">
             {currentCategoryName}
           </h2>
           {filteredProducts.length > 0 ? (
@@ -76,8 +77,8 @@ const HomePage: React.FC<HomePageProps> = ({
             </div>
           ) : (
              <div className="text-center py-12">
-              <p className="text-slate-500 dark:text-slate-400">No products found.</p>
-              <p className="text-sm text-slate-400 dark:text-slate-500 mt-2">Try a different category or search term.</p>
+              <p className="text-slate-500">No products found.</p>
+              <p className="text-sm text-slate-400 mt-2">Try a different category or search term.</p>
             </div>
           )}
         </section>

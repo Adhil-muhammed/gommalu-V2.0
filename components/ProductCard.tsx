@@ -1,5 +1,6 @@
 
 
+
 import type React from 'react';
 import type { Product } from '../types';
 import { Heart } from 'lucide-react';
@@ -32,8 +33,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, quantity, isF
   }
   
   return (
-    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm overflow-hidden flex flex-col transition-transform duration-300 hover:scale-105 hover:shadow-md relative">
-       <button onClick={handleToggleFavorite} className="absolute top-2 right-2 z-10 p-1.5 bg-white/70 dark:bg-slate-700/70 backdrop-blur-sm rounded-full text-red-500 hover:bg-white dark:hover:bg-slate-600 transition-colors">
+    <div className="bg-white rounded-2xl shadow-sm overflow-hidden flex flex-col transition-transform duration-300 hover:scale-105 hover:shadow-md relative">
+       <button onClick={handleToggleFavorite} className="absolute top-2 right-2 z-10 p-1.5 bg-white/70 backdrop-blur-sm rounded-full text-red-500 hover:bg-white transition-colors">
          {isFavorited ? <Heart className="w-5 h-5" fill="currentColor" /> : <Heart className="w-5 h-5" />}
          <span className="sr-only">Toggle Favorite</span>
        </button>
@@ -41,7 +42,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, quantity, isF
         <ImageWithFallback src={product.imageUrl} alt={product.name} className="w-full h-28 md:h-36 object-cover rounded-lg" />
         <div className="pt-3 flex flex-col flex-grow">
           <h3 
-            className="font-bold text-sm md:text-base text-slate-800 dark:text-slate-100 overflow-hidden text-ellipsis"
+            className="font-bold text-sm md:text-base text-slate-800 overflow-hidden text-ellipsis"
             style={{
               display: '-webkit-box',
               WebkitLineClamp: 2,
@@ -50,7 +51,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, quantity, isF
           >
             {product.name}
           </h3>
-          <p className="text-slate-500 dark:text-slate-400 font-semibold text-lg my-2">{formatPrice(product.price)}</p>
+          <p className="text-slate-500 font-semibold text-lg my-2">{formatPrice(product.price)}</p>
         </div>
       </div>
       <div className="px-3 pb-3 mt-auto">

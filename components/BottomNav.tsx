@@ -1,4 +1,5 @@
 
+
 import type React from 'react';
 import { Home, ShoppingCart, ClipboardList, Heart, User } from 'lucide-react';
 import { View } from '../App';
@@ -11,7 +12,7 @@ interface BottomNavProps {
 }
 
 const NavItem: React.FC<{ icon: React.FC<React.SVGProps<SVGSVGElement>>; label: string; active?: boolean; onClick?: () => void }> = ({ icon: Icon, label, active, onClick }) => (
-  <button onClick={onClick} className={`flex flex-col items-center justify-center text-xs font-medium w-full relative transition-all duration-200 ${active ? 'text-green-500 scale-110' : 'text-slate-400 dark:text-slate-500 hover:text-green-500'}`}>
+  <button onClick={onClick} className={`flex flex-col items-center justify-center text-xs font-medium w-full relative transition-all duration-200 ${active ? 'text-green-500 scale-110' : 'text-slate-400 hover:text-green-500'}`}>
     <Icon className="w-6 h-6 mb-1" />
     <span>{label}</span>
   </button>
@@ -39,7 +40,7 @@ export const BottomNav: React.FC<BottomNavProps> = ({ totalItems, onCartClick, a
         </div>
 
         {/* Navigation bar background */}
-        <div className="absolute bottom-0 left-0 right-0 h-[70px] bg-white dark:bg-slate-800 shadow-[0_-2px_10px_rgba(0,0,0,0.05)] dark:shadow-[0_-2px_10px_rgba(0,0,0,0.2)] rounded-t-2xl">
+        <div className="absolute bottom-0 left-0 right-0 h-[70px] bg-white shadow-[0_-2px_10px_rgba(0,0,0,0.05)] rounded-t-2xl">
           <nav className="flex items-center justify-around h-full px-2">
             <div className="w-1/5">
               <NavItem icon={Home} label="Home" active={activeView === 'home'} onClick={() => onNavigate('home')} />

@@ -1,4 +1,5 @@
 
+
 import React, { useState, useEffect } from 'react';
 import { Image } from 'lucide-react';
 
@@ -19,8 +20,8 @@ const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({ src, alt, classNa
 
   if (hasError || !src) {
     return (
-      <div className={`flex items-center justify-center bg-slate-100 dark:bg-slate-700 ${className || ''} ${fallbackClassName || ''}`}>
-        <Image className="w-1/3 h-1/3 text-slate-300 dark:text-slate-500" strokeWidth={1.5} />
+      <div className={`flex items-center justify-center bg-slate-100 ${className || ''} ${fallbackClassName || ''}`}>
+        <Image className="w-1/3 h-1/3 text-slate-300" strokeWidth={1.5} />
       </div>
     );
   }

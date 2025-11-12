@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, useMemo, useEffect, useCallback } from 'react';
+import React, { createContext, useContext, useMemo, useEffect } from 'react';
 
 type Theme = 'light' | 'dark';
 
@@ -10,35 +10,26 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [theme, setTheme] = useState<Theme>(() => {
-    if (typeof window !== 'undefined') {
-      const storedTheme = window.localStorage.getItem('theme');
-      if (storedTheme === 'dark' || storedTheme === 'light') {
-        return storedTheme;
-      }
-      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    }
-    return 'light';
-  });
+  const theme: Theme = 'light';
 
   useEffect(() => {
     const root = window.document.documentElement;
-    if (theme === 'dark') {
-      root.classList.add('dark');
-    } else {
-      root.classList.remove('dark');
+    root.classList.remove('dark');
+    try {
+      localStorage.setItem('theme', 'light');
+    } catch (error) {
+      console.warn('Could not access localStorage to set light theme.', error);
     }
-    localStorage.setItem('theme', theme);
-  }, [theme]);
-
-  const toggleTheme = useCallback(() => {
-    setTheme(current => (current === 'light' ? 'dark' : 'light'));
   }, []);
+
+  const toggleTheme = () => {
+    // The application is now forced to be in light mode. This function does nothing.
+  };
 
   const value = useMemo(() => ({
     theme,
     toggleTheme,
-  }), [theme, toggleTheme]);
+  }), [theme]);
 
   return (
     <ThemeContext.Provider value={value}>

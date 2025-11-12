@@ -4,44 +4,104 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ഇബ്രാഹിക്കാടെ കട</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manjari:wght@400;700&display=swap" rel="stylesheet">
-    <script>
-      // Prevents "flash of wrong theme"
-      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        document.documentElement.classList.add('dark')
-      } else {
-        document.documentElement.classList.remove('dark')
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style type="text/tailwindcss">
+      @layer base {
+        :root {
+          --background: 210 40% 98%;
+          --foreground: 222.2 84% 4.9%;
+          --card: 0 0% 100%;
+          --card-foreground: 222.2 84% 4.9%;
+          --popover: 0 0% 100%;
+          --popover-foreground: 222.2 84% 4.9%;
+          --primary: 142.1 76.2% 41.2%;
+          --primary-foreground: 355.7 100% 97.3%;
+          --secondary: 210 40% 96.1%;
+          --secondary-foreground: 222.2 47.4% 11.2%;
+          --muted: 210 40% 96.1%;
+          --muted-foreground: 215.4 16.3% 46.9%;
+          --accent: 210 40% 94.1%;
+          --accent-foreground: 222.2 47.4% 11.2%;
+          --destructive: 0 84.2% 60.2%;
+          --destructive-foreground: 210 40% 98%;
+          --border: 214.3 31.8% 91.4%;
+          --input: 214.3 31.8% 91.4%;
+          --ring: 142.1 76.2% 41.2%;
+          --radius: 0.75rem;
+        }
       }
-    </script>
-    <style>
+      @layer base {
+        * {
+          @apply border-border;
+        }
+        body {
+          @apply bg-background text-foreground;
+        }
+      }
       body {
         font-family: 'Manjari', sans-serif;
       }
-      /* Hide scrollbar for Chrome, Safari and Opera */
       .scrollbar-hide::-webkit-scrollbar {
         display: none;
       }
-      /* Hide scrollbar for IE, Edge and Firefox */
       .scrollbar-hide {
-        -ms-overflow-style: none;  /* IE and Edge */
-        scrollbar-width: none;  /* Firefox */
+        -ms-overflow-style: none;
+        scrollbar-width: none;
       }
     </style>
+    <script>
+      tailwind.config = {
+        content: [ './pages/**/*.{ts,tsx}', './components/**/*.{ts,tsx}', './index.html', './index.tsx' ],
+        prefix: "",
+        theme: {
+          container: { center: true, padding: "2rem", screens: { "2xl": "1400px" } },
+          extend: {
+            colors: {
+              border: "hsl(var(--border))", input: "hsl(var(--input))", ring: "hsl(var(--ring))", background: "hsl(var(--background))", foreground: "hsl(var(--foreground))",
+              primary: { DEFAULT: "hsl(var(--primary))", foreground: "hsl(var(--primary-foreground))" },
+              secondary: { DEFAULT: "hsl(var(--secondary))", foreground: "hsl(var(--secondary-foreground))" },
+              destructive: { DEFAULT: "hsl(var(--destructive))", foreground: "hsl(var(--destructive-foreground))" },
+              muted: { DEFAULT: "hsl(var(--muted))", foreground: "hsl(var(--muted-foreground))" },
+              accent: { DEFAULT: "hsl(var(--accent))", foreground: "hsl(var(--accent-foreground))" },
+              popover: { DEFAULT: "hsl(var(--popover))", foreground: "hsl(var(--popover-foreground))" },
+              card: { DEFAULT: "hsl(var(--card))", foreground: "hsl(var(--card-foreground))" },
+            },
+            borderRadius: { lg: "var(--radius)", md: "calc(var(--radius) - 2px)", sm: "calc(var(--radius) - 4px)" },
+            keyframes: {
+                "content-show": { from: { opacity: '0', transform: 'translate(-50%, -48%) scale(0.96)' }, to: { opacity: '1', transform: 'translate(-50%, -50%) scale(1)' } },
+                "content-hide": { from: { opacity: '1', transform: 'translate(-50%, -50%) scale(1)' }, to: { opacity: '0', transform: 'translate(-50%, -48%) scale(0.96)' } },
+                "sheet-show": { from: { transform: 'translateY(100%)' }, to: { transform: 'translateY(0)' } },
+                "sheet-hide": { from: { transform: 'translateY(0)' }, to: { transform: 'translateY(100%)' } },
+            },
+            animation: {
+                "content-show": 'content-show 150ms cubic-bezier(0.16, 1, 0.3, 1)',
+                "content-hide": 'content-hide 150ms cubic-bezier(0.16, 1, 0.3, 1)',
+                "sheet-show": 'sheet-show 0.3s ease-out',
+                "sheet-hide": 'sheet-hide 0.3s ease-out',
+            },
+          },
+        },
+      }
+    </script>
   <script type="importmap">
 {
   "imports": {
     "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
     "react/": "https://aistudiocdn.com/react@^19.2.0/",
     "react": "https://aistudiocdn.com/react@^19.2.0",
-    "lucide-react": "https://esm.sh/lucide-react@0.417.0"
+    "lucide-react": "https://esm.sh/lucide-react@0.417.0",
+    "clsx": "https://esm.sh/clsx@2.1.1",
+    "tailwind-merge": "https://esm.sh/tailwind-merge@2.4.0",
+    "vaul": "https://esm.sh/vaul@0.9.1",
+    "class-variance-authority": "https://aistudiocdn.com/class-variance-authority@^0.7.1"
   }
 }
 </script>
 </head>
-  <body class="bg-slate-50 dark:bg-slate-900">
+  <body>
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
   </body>

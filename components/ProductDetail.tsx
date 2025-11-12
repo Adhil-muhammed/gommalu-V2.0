@@ -1,5 +1,6 @@
 
 
+
 import React from 'react';
 import { ChevronLeft } from 'lucide-react';
 import { Product } from '../types';
@@ -27,7 +28,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ isOpen, product, quantity
       onClick={onClose}
     >
       <div 
-        className={`fixed inset-x-0 bottom-0 bg-slate-50 dark:bg-slate-800 w-full max-w-lg mx-auto max-h-[90vh] rounded-t-2xl shadow-xl flex flex-col transition-transform duration-300 ease-out ${isOpen ? 'translate-y-0' : 'translate-y-full'}`}
+        className={`fixed inset-x-0 bottom-0 bg-card w-full max-w-lg mx-auto max-h-[90vh] rounded-t-2xl shadow-xl flex flex-col transition-transform duration-300 ease-out ${isOpen ? 'translate-y-0' : 'translate-y-full'}`}
         onClick={e => e.stopPropagation()}
       >
         <header className="absolute top-0 left-0 p-4 z-10">
@@ -38,25 +39,25 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ isOpen, product, quantity
         </header>
 
         <div className="flex-grow overflow-y-auto">
-            <div className="h-64 md:h-80 bg-slate-200 dark:bg-slate-700">
+            <div className="h-64 md:h-80 bg-slate-200">
                 <ImageWithFallback src={product.imageUrl} alt={product.name} className="w-full h-full object-cover"/>
             </div>
 
             <div className="p-4 md:p-6">
-                <h2 className="text-3xl font-bold text-slate-900 dark:text-slate-100">{product.name}</h2>
+                <h2 className="text-3xl font-bold text-slate-900">{product.name}</h2>
                 <p className="text-3xl font-bold text-green-600 my-3">{formatPrice(product.price)}</p>
                 
                 {product.description && (
-                    <p className="text-slate-600 dark:text-slate-300 mt-4">{product.description}</p>
+                    <p className="text-slate-600 mt-4">{product.description}</p>
                 )}
 
                 {product.details && product.details.length > 0 && (
-                     <div className="mt-6 border-t border-slate-200 dark:border-slate-700 pt-4">
-                        <h3 className="text-xl font-bold text-slate-800 dark:text-slate-200">Product Details</h3>
-                        <div className="mt-2 space-y-2 text-slate-600 dark:text-slate-400">
+                     <div className="mt-6 border-t border-slate-200 pt-4">
+                        <h3 className="text-xl font-bold text-slate-800">Product Details</h3>
+                        <div className="mt-2 space-y-2 text-slate-600">
                             {product.details.map((detail, index) => (
-                                <div key={index} className="flex justify-between items-center py-2 border-b border-slate-100 dark:border-slate-700/50 last:border-b-0">
-                                    <span className="font-medium text-slate-700 dark:text-slate-300">{detail.title}</span>
+                                <div key={index} className="flex justify-between items-center py-2 border-b border-slate-100 last:border-b-0">
+                                    <span className="font-medium text-slate-700">{detail.title}</span>
                                     <span>{detail.value}</span>
                                 </div>
                             ))}
@@ -66,7 +67,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ isOpen, product, quantity
             </div>
         </div>
         
-        <footer className="p-4 border-t border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 sticky bottom-0">
+        <footer className="p-4 border-t border-slate-200 bg-card sticky bottom-0">
           {quantity === 0 ? (
               <button 
                 onClick={handleIncrement}
